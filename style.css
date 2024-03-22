@@ -59,3 +59,10 @@ nav ul {
     display: flex;
     gap: 1rem;
 }
+.plusMinus {
+    padding: .5rem .5rem;
+    color: white;
+    background: transparent;
+    border: solid 1px white;
+
+}

@@ -1,10 +1,12 @@
-import {mesh} from './main.js'
+import {mesh, updateContent} from './main.js'
 
 const buttonPlusScale = document.getElementById('plusScale')
 buttonPlusScale.addEventListener('click', () => {
     mesh.scale.x += 0.01
     mesh.scale.y += 0.01
     mesh.scale.z += 0.01
+    updateContent()
+
 })
 
 const buttonMinusScale = document.getElementById('minusScale')
@@ -12,7 +14,9 @@ buttonMinusScale.addEventListener('click', () => {
     mesh.scale.x -= 0.01
     mesh.scale.y -= 0.01
     mesh.scale.z -= 0.01
+    updateContent()
 })
+
 
 const buttonPlusRotation = document.getElementById('plusRotation')
 buttonPlusRotation.addEventListener('click', () => {
