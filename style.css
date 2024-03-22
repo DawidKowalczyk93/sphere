@@ -46,3 +46,16 @@ nav ul {
     transform: translateX(-50%);
     z-index: 3;
 }
+.options {
+    position: absolute;
+    color: white;
+    z-index: 3;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.options__item {
+    display: flex;
+    gap: 1rem;
+}

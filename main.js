@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import './style.css'
+import {gsap} from "gsap";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js";
+import './buttonsHandler.js'
 
 
 const scene = new THREE.Scene();
@@ -8,7 +10,7 @@ const scene = new THREE.Scene();
 const geometry = new THREE.SphereGeometry(3, 64, 64)
 const material = new THREE.MeshStandardMaterial({color: 0xffff00})
 
-const mesh = new THREE.Mesh(geometry, material)
+export const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
 //Sizes
@@ -63,4 +65,6 @@ const loop = () => {
 loop()
 
 //Timeline magiccc
-// const tl = gsap.timeline( {})
+const tl = gsap.timeline( {defaults: { duration: 1 } })
+tl.fromTo(mesh.scale, {z: 0, x: 0, y: 0}, {z: 1, x: 1, y: 1} )
+
