@@ -7,8 +7,11 @@ import './buttonsHandler.js'
 
 const scene = new THREE.Scene();
 
-const geometry = new THREE.SphereGeometry(3, 64, 64)
-const material = new THREE.MeshStandardMaterial({color: 0xffff00})
+const loader = new THREE.TextureLoader();
+const geometry = new THREE.IcosahedronGeometry(3, 16)
+const material = new THREE.MeshStandardMaterial({
+    map: loader.load("./mars_1k_color.jpg")
+})
 
 export const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
@@ -19,18 +22,15 @@ const sizes = {
     height: window.innerHeight
 }
 
-
 //Light
-const light = new THREE.PointLight(0xffffff, 200, 100)
+const light = new THREE.HemisphereLight(0xffffff, 0xaa5500)
 light.position.set(10, 10, 10)
 scene.add(light) // Dodanie światła do sceny
-
 
 //Camera
 const camera = new THREE.PerspectiveCamera(45, sizes.width/sizes.height)
 camera.position.z = 20
 scene.add(camera)
-
 
 //Render
 const canvas = document.querySelector(".webgl");
@@ -40,12 +40,10 @@ renderer.setPixelRatio(2)
 renderer.render(scene, camera)
 
 //Controls
-
 const controls = new OrbitControls( camera, canvas)
 controls.enableDamping = true
 controls.enablePan = false
 controls.enableZoom = false
-controls.autoRotate = true
 
 //Resize
 window.addEventListener('resize', () => {
@@ -59,6 +57,7 @@ window.addEventListener('resize', () => {
 
 const loop = () => {
     controls.update()
+    mesh.rotation.y += 0.001;
     renderer.render(scene, camera)
     window.requestAnimationFrame(loop)
 }
@@ -68,9 +67,9 @@ loop()
 const tl = gsap.timeline( {defaults: { duration: 1 } })
 tl.fromTo(mesh.scale, {z: 0, x: 0, y: 0}, {z: 1, x: 1, y: 1} )
 
-
-
 export const updateContent = () => {
     const scaleValue = document.getElementById('scaleValue')
     scaleValue.innerHTML = Math.floor(mesh.scale.x * 100 ) / 100;
+    const rotationValue = document.getElementById('rotationValue')
+    rotationValue.innerHTML = mesh.rotation.x;
 }
