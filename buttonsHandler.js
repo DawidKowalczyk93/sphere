@@ -19,15 +19,13 @@ buttonMinusScale.addEventListener('click', () => {
 
 
 const buttonPlusRotation = document.getElementById('plusRotation')
-let rotationY = 0.01
+export let rotationY = 0.001
 buttonPlusRotation.addEventListener('click', () => {
-    rotationY += 0.01
-    mesh.rotation.y += rotationY
+    rotationY += 0.001
     updateContent()
 })
 const buttonMinusRotation = document.getElementById('minusRotation')
 buttonMinusRotation.addEventListener('click', () => {
-    mesh.rotation.y -= 0.01
-    console.log(mesh.rotation.x)
+    rotationY -= 0.001
     updateContent()
 })

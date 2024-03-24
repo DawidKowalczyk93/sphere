@@ -3,12 +3,12 @@ import './style.css'
 import {gsap} from "gsap";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js";
 import './buttonsHandler.js'
-
+import {rotationY} from "./buttonsHandler.js";
 
 const scene = new THREE.Scene();
 
 const loader = new THREE.TextureLoader();
-const geometry = new THREE.IcosahedronGeometry(3, 16)
+const geometry = new THREE.IcosahedronGeometry(3, 5 )
 const material = new THREE.MeshStandardMaterial({
     map: loader.load("./mars_1k_color.jpg")
 })
@@ -57,7 +57,7 @@ window.addEventListener('resize', () => {
 
 const loop = () => {
     controls.update()
-    mesh.rotation.y += 0.001;
+    mesh.rotation.y += rotationY;
     renderer.render(scene, camera)
     window.requestAnimationFrame(loop)
 }
@@ -71,5 +71,5 @@ export const updateContent = () => {
     const scaleValue = document.getElementById('scaleValue')
     scaleValue.innerHTML = Math.floor(mesh.scale.x * 100 ) / 100;
     const rotationValue = document.getElementById('rotationValue')
-    rotationValue.innerHTML = mesh.rotation.x;
+    rotationValue.innerHTML = mesh.rotation.y;
 }
