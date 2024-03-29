@@ -64,5 +64,14 @@ nav ul {
     color: white;
     background: transparent;
     border: solid 1px white;
-
+}
+.choose {
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    position: absolute;
+    color: white;
+    z-index: 3;
+    display: flex;
+    gap: 400px;
 }

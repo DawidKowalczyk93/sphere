@@ -4,14 +4,21 @@ import {gsap} from "gsap";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls.js";
 import './buttonsHandler.js'
 import {rotationY} from "./buttonsHandler.js";
+import {planets} from "./planets.js";
+//Planets Array
+
+export let planetNumber = {
+    number: 0
+};
 
 const scene = new THREE.Scene();
 
 const loader = new THREE.TextureLoader();
 const geometry = new THREE.IcosahedronGeometry(3, 5 )
 const material = new THREE.MeshStandardMaterial({
-    map: loader.load("./mars_1k_color.jpg")
+    map: loader.load(planets[planetNumber.number].url)
 })
+
 
 export const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
@@ -71,5 +78,16 @@ export const updateContent = () => {
     const scaleValue = document.getElementById('scaleValue')
     scaleValue.innerHTML = Math.floor(mesh.scale.x * 100 ) / 100;
     const rotationValue = document.getElementById('rotationValue')
-    rotationValue.innerHTML = mesh.rotation.y;
+    rotationValue.innerHTML = Math.floor(mesh.rotation.y * 100 ) / 100;
+}
+export const updateTexture = () => {
+    scene.remove(mesh)
+    const newMaterial = new THREE.MeshStandardMaterial({
+        map: loader.load(planets[planetNumber.number].url)
+    })
+    const newRadius = new THREE.IcosahedronGeometry(planets[planetNumber.number].radius, 5 )
+    mesh.material = newMaterial
+    mesh.geometry = newRadius
+    scene.add(mesh)
+
 }

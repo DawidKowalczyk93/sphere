@@ -1,4 +1,5 @@
-import {mesh, updateContent} from './main.js'
+import {mesh, updateContent, updateTexture} from './main.js'
+import {planetNumber} from "./main.js";
 
 const buttonPlusScale = document.getElementById('plusScale')
 buttonPlusScale.addEventListener('click', () => {
@@ -28,4 +29,18 @@ const buttonMinusRotation = document.getElementById('minusRotation')
 buttonMinusRotation.addEventListener('click', () => {
     rotationY -= 0.001
     updateContent()
+})
+
+const buttonNextPlanet = document.getElementById('next')
+buttonNextPlanet.addEventListener('click', () => {
+    planetNumber.number += 1
+    console.log(planetNumber.number)
+    updateTexture()
+})
+
+const buttonPreviousPlanet = document.getElementById('previous')
+buttonPreviousPlanet.addEventListener('click', () => {
+    planetNumber.number -= 1
+    console.log(planetNumber.number)
+    updateTexture()
 })
